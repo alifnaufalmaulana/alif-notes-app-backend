@@ -41,7 +41,7 @@
 // router.post('/notes', addNote);
 // router.get('/notes', getAllNotes);
 
-// export default router alif-notes-app-backend;
+// export default router;
 
 import { Router } from 'express';
 import { addNote, getAllNotes, getNoteById, editNoteById, deleteNoteById } from '../controller/note-controller.js';
