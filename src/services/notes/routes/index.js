@@ -60,15 +60,15 @@ import express from 'express';
 import { addNote, getAllNotes, getNoteById, editNoteById, deleteNoteById } from '../controller/note-controller.js';
 import validate from '../../../middlewares/validate.js';
 import { notePayloadSchema, noteUpdatePayloadSchema, noteQuerySchema } from '../../../services/notes/validator/schema.js';
-import validateQuery from '../../../middlewares/validateQuery.js';
+// import validateQuery from '../../../middlewares/validateQuery.js';
 
 const router = express.Router();
 
 router.post('/notes', validate(notePayloadSchema), addNote);
-// router.get('/notes', getAllNotes);
+router.get('/notes', getAllNotes);
 router.get('/notes/:id', getNoteById);
 router.put('/notes/:id', validate(noteUpdatePayloadSchema), editNoteById);
 router.delete('/notes/:id', deleteNoteById);
-router.get('/notes', validateQuery(noteQuerySchema), getAllNotes);
+router.get('/notes', validate(noteQuerySchema), getAllNotes);
 
 export default router;

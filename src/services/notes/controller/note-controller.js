@@ -140,8 +140,30 @@ export const addNote = (req, res, next) => {
 //   return response(res, 200, 'success', { notes: notes });
 // };
 
+// export const getAllNotes = (req, res) => {
+//   const { title = '' } = req.query;
+
+//   console.log('Tipe data title:', typeof title); // Intip tipe datanya
+//   console.log('Isi title:', title); // Intip isinya
+
+//   if (title !== '') {
+//     const note = notes.filter((note) => note.title === title);
+//     return response(res, 200, 'success', { notes: note });
+//   }
+
+//   return response(res, 200, 'success', { notes });
+// };
+
 export const getAllNotes = (req, res) => {
   const { title = '' } = req.query;
+
+  // Jika title dikirim lebih dari satu (menjadi array/object), kirim 400
+  if (typeof title === 'object') {
+    return res.status(400).json({
+      status: 'fail',
+      message: 'Title must be a string, not an array',
+    });
+  }
 
   if (title !== '') {
     const note = notes.filter((note) => note.title === title);
